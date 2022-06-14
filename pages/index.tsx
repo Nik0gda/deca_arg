@@ -87,8 +87,8 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="flex bg-zinc-900 h-screen text-white">
-        <div className="m-auto grid grid-rows-2 text-center">
-          <div className="w-80 my-auto">
+        <div className="m-auto flex flex-col text-center">
+          <div className="w-96 my-auto">
             {guessNumber == 1 ? (
               <Image
                 src="/rcsfirst.png"
@@ -105,7 +105,7 @@ const Home: NextPage = () => {
             <input
               placeholder="Type your answer here"
               value={inputValue}
-              className="mx-auto mt-auto mb-4 text-sm rounded block w-60 h-10 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+              className="mx-auto  text-sm rounded block w-60 h-10 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
               onInput={(e) => {
                 setInputValue((e.target as HTMLTextAreaElement).value);
                 setErrorMessage('');

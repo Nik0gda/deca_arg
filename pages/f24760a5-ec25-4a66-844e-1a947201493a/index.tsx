@@ -14,24 +14,21 @@ const SecondPart: NextPage = () => {
       </Head>
 
       <div className="flex bg-zinc-900 h-screen text-white">
-        <div className="m-auto grid grid-rows-2 text-center">
-          <div className="w-80 my-auto">
-            <Image
-              src="/rcs-second-part.png"
-              alt="Second question picture"
-              width={1054}
-              height={1054}
-            />
-          </div>
-          <div className="grid grid-rows-3 grid-flow-col gap-4">
-            <ReactAudioPlayer
-              src="ChaosNoiseFinal.mp3"
-              autoPlay={true}
-              controls={true}
-              loop={true}
-              volume={0.1}
-            />
-          </div>
+        <div className="m-auto flex flex-col text-center">
+          <Image
+            src="/rcs-second-part.png"
+            alt="Second question picture"
+            width={1159}
+            height={676}
+          />
+          <ReactAudioPlayer
+            src="ChaosNoiseFinal.mp3"
+            autoPlay={true}
+            controls={true}
+            loop={true}
+            volume={0.1}
+            className="mb-auto pt-20"
+          />
         </div>
       </div>
     </div>
