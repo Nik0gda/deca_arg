@@ -26,9 +26,9 @@ const SecondPart: NextPage = () => {
           <div className="grid grid-rows-3 grid-flow-col gap-4">
             <ReactAudioPlayer
               src="ChaosNoiseFinal.mp3"
-              autoPlay
-              controls
-              loop
+              autoPlay={true}
+              controls={true}
+              loop={true}
               volume={0.1}
             />
           </div>
