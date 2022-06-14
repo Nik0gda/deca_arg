@@ -2,16 +2,29 @@ import axios, { AxiosError } from 'axios';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 const API_BASE_URL = 'http://localhost:3001';
+
+const getFullAPIURL = (answer: string, guessNumberAlphabetical: string) => {
+  const answerOne = localStorage.getItem('answer-one');
+  const answerTwo = localStorage.getItem('answer-two');
+
+  return `${API_BASE_URL}/check-question-${guessNumberAlphabetical}?answerOne=${answerOne}&answerTwo=${answerTwo}&answer=${answer}`;
+};
 
 const Home: NextPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [guessNumber, setGuessNumber] = useState(1);
   const [questionText, setQuestionText] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const pleaseRefreshError = () => {
     setErrorMessage('Please refresh the page or contact and admin!');
@@ -20,6 +33,8 @@ const Home: NextPage = () => {
   const checkGuess = async () => {
     try {
       if (!inputValue) return setErrorMessage('Please provide an answer!');
+      const answer = inputValue.toLowerCase();
+
       const guessNumberAlphabetical =
         guessNumber === 1
           ? 'one'
@@ -30,21 +45,23 @@ const Home: NextPage = () => {
           : undefined;
       if (!guessNumberAlphabetical) return pleaseRefreshError();
       const { data } = await axios.get(
-        `${API_BASE_URL}/check-question-${guessNumberAlphabetical}?answer=${inputValue.toLowerCase()}`
+        getFullAPIURL(answer, guessNumberAlphabetical)
       );
 
       if (!data.passed) return setErrorMessage('Wrong answer!');
 
       if (guessNumber === 1) {
+        localStorage.setItem('answer-one', answer);
         setGuessNumber(2);
         setQuestionText(data.nextQuestion);
       }
       if (guessNumber === 2) {
+        localStorage.setItem('answer-two', answer);
         setGuessNumber(3);
         setQuestionText(data.nextQuestion);
       }
 
-      if (data.url) window.location.href = data.url;
+      if (data.url) router.push(data.url);
 
       setInputValue('');
     } catch (error: any | AxiosError) {
@@ -71,13 +88,24 @@ const Home: NextPage = () => {
 
       <div className="flex bg-zinc-900 h-screen text-white">
         <div className="m-auto grid grid-rows-2 text-center">
-          <div className="w-80 my-auto">{questionText}</div>
+          <div className="w-80 my-auto">
+            {guessNumber == 1 ? (
+              <Image
+                src="/rcsfirst.png"
+                alt="First question picture"
+                width={1054}
+                height={1054}
+              />
+            ) : (
+              questionText
+            )}
+          </div>
           <div className="grid grid-rows-3 grid-flow-col gap-4">
             <div className="text-red-700 mx-auto">{errorMessage}</div>
             <input
               placeholder="Type your answer here"
               value={inputValue}
-              className="mx-auto text-sm rounded block w-60 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+              className="mx-auto mt-auto mb-4 text-sm rounded block w-60 h-10 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
               onInput={(e) => {
                 setInputValue((e.target as HTMLTextAreaElement).value);
                 setErrorMessage('');
