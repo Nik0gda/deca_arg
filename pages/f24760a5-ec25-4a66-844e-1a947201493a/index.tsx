@@ -8,7 +8,7 @@ import useSound from 'use-sound';
 
 const SecondPart: NextPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [play, { stop }] = useSound('/ChaosNoiseFinal.mp3');
+  const [play, { pause }] = useSound('/ChaosNoiseFinal.mp3');
   return (
     <div>
       <Head>
@@ -21,11 +21,11 @@ const SecondPart: NextPage = () => {
         <div className="absolute w-screen">
           <div className="float-right">
             <Image
-              src={`/${!isPlaying ? 'un' : ''}muted.gif`}
+              src={`/${isPlaying ? 'un' : ''}muted.gif`}
               height={100}
               width={100}
               onClick={() => {
-                if (isPlaying) stop();
+                if (isPlaying) pause();
                 else play();
                 setIsPlaying(!isPlaying);
               }}
