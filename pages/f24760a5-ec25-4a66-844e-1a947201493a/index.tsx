@@ -4,9 +4,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
+import useSound from 'use-sound';
 
 const SecondPart: NextPage = () => {
-  const [muted, toggleMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [play, { stop }] = useSound('/ChaosNoiseFinal.mp3');
   return (
     <div>
       <Head>
@@ -19,11 +21,13 @@ const SecondPart: NextPage = () => {
         <div className="absolute w-screen">
           <div className="float-right">
             <Image
-              src={`/${!muted ? 'un' : ''}muted.gif`}
+              src={`/${!isPlaying ? 'un' : ''}muted.gif`}
               height={100}
               width={100}
               onClick={() => {
-                toggleMuted(!muted);
+                if (isPlaying) stop();
+                else play();
+                setIsPlaying(!isPlaying);
               }}
             />
           </div>
@@ -34,14 +38,6 @@ const SecondPart: NextPage = () => {
             alt="Second question picture"
             width={1780}
             height={1030}
-          />
-          <ReactAudioPlayer
-            src="ChaosNoiseFinal.mp3"
-            autoPlay={true}
-            controls={false}
-            loop={true}
-            muted={muted}
-            className="mb-auto pt-20"
           />
         </div>
       </div>
