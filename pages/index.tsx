@@ -91,7 +91,7 @@ const Home: NextPage = () => {
         <div className="m-auto flex flex-col text-center">
           <div className="w-96 my-auto">
             {guessNumber == 1 ? (
-              <Image
+              <img
                 src="/rcsfirst.png"
                 alt="First question picture"
                 width={1054}

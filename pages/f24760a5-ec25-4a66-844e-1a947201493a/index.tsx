@@ -33,7 +33,7 @@ const SecondPart: NextPage = () => {
           </div>
         </div>
         <div className="m-auto flex flex-col text-center w-2/3">
-          <Image
+          <img
             src="/rightclickseekfinal.png"
             alt="Second question picture"
             width={1780}
