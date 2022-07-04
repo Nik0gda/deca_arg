@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 const API_BASE_URL =
-  'https://dmx6kfjta2.execute-api.eu-central-1.amazonaws.com/dev';
+  'https://t5tp00ul77.execute-api.eu-central-1.amazonaws.com/dev/';
 
 const getFullAPIURL = (answer: string, guessNumberAlphabetical: string) => {
   const answerOne = localStorage.getItem('answer-one');
