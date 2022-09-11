@@ -74,7 +74,11 @@ const Home: NextPage = () => {
           height={250}
         />
         <p className={success[i] ? 'text-green-500' : 'text-red-500'}>
-          {success[i] ? 'This answer is right' : 'Something is wrong here 🤔'}
+          {success[i]
+            ? 'This answer is right'
+            : success[i] == undefined
+            ? ''
+            : 'Something is wrong here 🤔'}
         </p>
         <input
           placeholder="Name"
