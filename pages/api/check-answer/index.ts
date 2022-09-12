@@ -23,6 +23,8 @@ export default async function handler(
       correct[i] = true;
   }
 
+  console.log(guesses, correct);
+
   res.status(200).json({
     correct,
     link: correct.includes(false) ? '' : 'https://google.com',
