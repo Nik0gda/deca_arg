@@ -11,6 +11,6 @@ export default async function handler(
 
   res.status(200).json({
     correct: true,
-    link: 'https://google.com',
+    link: 'https://forms.gle/uyC1dfDShdFcoWrR7',
   });
 }
