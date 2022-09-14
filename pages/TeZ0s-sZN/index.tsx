@@ -2,6 +2,7 @@ import axios, { AxiosError } from 'axios';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
@@ -115,7 +116,7 @@ const Home: NextPage = () => {
       guesses: answers,
     });
 
-    if (response.data.link) document.location.href = response.data.link;
+    if (response.data.link) Router.push(response.data.link);
     setSuccess(response.data.correct);
     console.log(response);
   };

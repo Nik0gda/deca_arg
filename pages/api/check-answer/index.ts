@@ -27,6 +27,6 @@ export default async function handler(
 
   res.status(200).json({
     correct,
-    link: correct.includes(false) ? '' : 'https://google.com',
+    link: correct.includes(false) ? '' : '/urovmznv_rh_riivovezmg',
   });
 }
