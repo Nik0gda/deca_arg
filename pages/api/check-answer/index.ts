@@ -37,9 +37,9 @@ export default async function handler(
 
   for (let i = 0; i < 5; i++) {
     if (
-      (guesses[i][0].toLowerCase() === answers[i][0].toLowerCase() ||
-        guesses[i][0].toLowerCase() === answers[i][2]) &&
-      guesses[i][1].toLowerCase() === answers[i][1].toLowerCase()
+      guesses[i][0].toLowerCase() === answers[i][0].toLowerCase() &&
+      (guesses[i][1].toLowerCase() === answers[i][1].toLowerCase() ||
+        guesses[i][0].toLowerCase() === answers[i][2])
     )
       correct[i] = true;
   }
