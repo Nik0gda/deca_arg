@@ -126,7 +126,7 @@ const Home: NextPage = () => {
         <title>
           ------ RCS Collective Riddle ------ You need to input the link to the
           post ( from teztheszn square ) you found this nft in, as well as
-          post's creator name
+          post&apos;s creator name
         </title>
         <meta
           name="description"
