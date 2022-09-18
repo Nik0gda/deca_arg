@@ -125,7 +125,8 @@ const Home: NextPage = () => {
       <Head>
         <title>
           ------ RCS Collective Riddle ------ You need to input the link to the
-          gallery you found this nft in, as well as creators name
+          gallery ( from teztheszn square ) you found this nft in, as well as
+          creators name
         </title>
         <meta
           name="description"
