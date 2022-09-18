@@ -39,7 +39,7 @@ export default async function handler(
     if (
       guesses[i][0].toLowerCase() === answers[i][0].toLowerCase() &&
       (guesses[i][1].toLowerCase() === answers[i][1].toLowerCase() ||
-        guesses[i][1].toLowerCase() === answers[i][2])
+        guesses[i][1].toLowerCase() === answers[i][2].toLowerCase())
     )
       correct[i] = true;
   }
